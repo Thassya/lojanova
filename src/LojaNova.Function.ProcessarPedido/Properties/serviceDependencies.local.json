@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "appInsights1": {
+      "type": "appInsights.sdk"
+    },
+    "storage1": {
+      "type": "storage.emulator",
+      "connectionId": "AzureWebJobsStorage"
+    },
+    "secrets1": {
+      "type": "secrets.user"
+    },
+    "storage2": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('serviceConnectorResourceGroupName')]/providers/Microsoft.ServiceLinker/locations/brazilsouth/connectors/LojaNovaStorageAccount_E97401DE92, /subscriptions/575b7223-f878-4c4d-b90f-fb0442a0ce86/resourceGroups/Infnet-Azure/providers/Microsoft.ServiceLinker/locations/brazilsouth/connectors/LojaNovaStorageAccount_0308841770",
+      "secretStore": "LocalSecretsFile",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/lojanovastoragedev",
+      "type": "storage.azure",
+      "connectionId": "LojaNovaStorageAccount",
+      "dynamicId": null
+    }
+  }
+}

@@ -27,7 +27,7 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 // Configuração do Azure Storage Service
 builder.Services.AddScoped<IAzureStorageService, AzureStorageService>(provider =>
 {
-    var connectionString = builder.Configuration.GetConnectionString("AzureStorage");
+    var connectionString = builder.Configuration.GetConnectionString("LojaNovaAzureStorage");
     var orderQueueName = builder.Configuration["AzureStorageSettings:OrderQueueName"];
     var productImagesShareName = builder.Configuration["AzureStorageSettings:ProductImagesShareName"];
 
@@ -37,7 +37,7 @@ builder.Services.AddScoped<IAzureStorageService, AzureStorageService>(provider =
 
     // Criar fila e share se não existirem (idealmente feito no provisionamento ou migração)
     queueClient.CreateIfNotExists();
-    shareClient.GetDirectoryClient("/").CreateIfNotExists(); // Cria o diretório raiz do share
+    //shareClient.GetDirectoryClient("/").CreateIfNotExists(); // Cria o diretório raiz do share
 
     return new AzureStorageService(queueClient, blobServiceClient, shareClient);
 });

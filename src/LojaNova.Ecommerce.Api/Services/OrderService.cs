@@ -21,7 +21,7 @@ public class OrderService : IOrderService
         _productRepository = productRepository;
         _azureStorageService = azureStorageService;
         _configuration = configuration;
-        _orderQueueName = _configuration["AzureStorageSettings:OrderQueueName"] ?? "order-queue";
+        _orderQueueName = _configuration["AzureStorageSettings:OrderQueueName"] ?? "orders";
     }
 
     public async Task<IEnumerable<Order>> GetAllOrdersAsync()

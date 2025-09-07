@@ -2,6 +2,7 @@
 using Azure.Storage.Files.Shares;
 using Azure.Storage.Queues;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace LojaNova.Ecommerce.Api.Services
 {
@@ -20,10 +21,9 @@ namespace LojaNova.Ecommerce.Api.Services
 
         public async Task SendMessageToQueueAsync<T>(string queueName, T message)
         {
-            var queueClient = new QueueClient(_orderQueueClient.Uri.ToString(), queueName, new QueueClientOptions());
-            await queueClient.CreateIfNotExistsAsync();
             var jsonMessage = JsonConvert.SerializeObject(message);
-            await queueClient.SendMessageAsync(jsonMessage);
+            var bytes = Encoding.UTF8.GetBytes(jsonMessage);
+            await _orderQueueClient.SendMessageAsync(Convert.ToBase64String(bytes));
         }
 
         public async Task<Uri> UploadFileToShareAsync(string shareName, string directoryName, string fileName, Stream fileStream)
@@ -33,8 +33,7 @@ namespace LojaNova.Ecommerce.Api.Services
 
             var fileClient = directoryClient.GetFileClient(fileName);
             await fileClient.CreateAsync(fileStream.Length); // Define o tamanho do arquivo
-            await fileClient.UploadRangeAsync(
-                new Azure.HttpRange(0, fileStream.Length),
+            await fileClient.UploadRangeAsync(new Azure.HttpRange(0, fileStream.Length),
                 fileStream);
 
             // Retorna a URL do arquivo para armazenamento no banco de dados

@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "LojaNova.Function.ProcessarPedido": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7121 --verbose"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "containerRunArguments": "--init",
+      "httpPort": 31865,
+      "useSSL": false
+    }
+  }
+}

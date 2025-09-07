@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "LojaNova.Ecommerce.Api\\LojaNova.Ecommerce.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Path": "LojaNova.Function.ProcessarPedido\\LojaNova.Function.ProcessarPedido.csproj",
+        "Action": "Start",
+        "DebugTarget": "LojaNova.Function.ProcessarPedido"
+      }
+    ]
+  }
+]
