@@ -9,6 +9,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaNova.Shared.Models", "L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaNova.Function.ProcessarPedido", "LojaNova.Function.ProcessarPedido\LojaNova.Function.ProcessarPedido.csproj", "{14300BE3-0CCF-4302-9BCE-CF400FD63662}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaNova.Ecommerce.Api.Tests", "LojaNova.Ecommerce.Api.Tests\LojaNova.Ecommerce.Api.Tests.csproj", "{C577D45F-DE9C-43F9-8E01-AB55DFCD00F6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6B3C2E31-0C78-421E-951F-539081090F78} = {6B3C2E31-0C78-421E-951F-539081090F78}
+		{8102159D-AEA2-45F7-854A-42AB37A299C8} = {8102159D-AEA2-45F7-854A-42AB37A299C8}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +35,16 @@ Global
 		{14300BE3-0CCF-4302-9BCE-CF400FD63662}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14300BE3-0CCF-4302-9BCE-CF400FD63662}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14300BE3-0CCF-4302-9BCE-CF400FD63662}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C577D45F-DE9C-43F9-8E01-AB55DFCD00F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C577D45F-DE9C-43F9-8E01-AB55DFCD00F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C577D45F-DE9C-43F9-8E01-AB55DFCD00F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C577D45F-DE9C-43F9-8E01-AB55DFCD00F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C577D45F-DE9C-43F9-8E01-AB55DFCD00F6} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1E1825F7-56F5-4C9D-A309-89E048D52F84}
