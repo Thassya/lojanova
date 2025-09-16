@@ -47,3 +47,11 @@ steps:
   inputs:
     pathToPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: 'drop'
+
+- task: AzureRmWebAppDeployment@5
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Pessoal(575b7223-f878-4c4d-b90f-fb0442a0ce86)'
+    appType: 'webApp'
+    WebAppName: 'lojanova'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
