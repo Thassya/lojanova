@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 
 variables:
   buildConfiguration: 'Release'
@@ -30,8 +30,9 @@ steps:
   displayName: 'Running Unit Tests'
   inputs:
     command: test
+    publishTestResults: true
     projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+    arguments: '--configuration $(buildConfiguration) --collect "Code Coverage"'
 
 - task: DotNetCoreCLI@2
   displayName: 'Publish project'
