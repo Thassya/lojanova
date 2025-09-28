@@ -10,16 +10,21 @@ namespace LojaNova.Ecommerce.Api.Controllers
     public class CatalogController : ControllerBase
     {
         private readonly ICatalogService _catalogService;
+        private readonly ILogger<CatalogController> _logger;
 
-        public CatalogController(ICatalogService catalogService)
+        public CatalogController(ICatalogService catalogService, ILogger<CatalogController> logger)
         {
             _catalogService = catalogService;
+            _logger = logger;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
+            _logger.LogInformation("[lojanovaapi] Getting all products...");
             var products = await _catalogService.GetAllProductsAsync();
+            _logger.LogInformation("[lojanovaapi] Recovered products: {Products}", products);
+            
             return Ok(products);
         }
 

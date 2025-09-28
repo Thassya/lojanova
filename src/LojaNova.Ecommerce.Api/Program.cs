@@ -4,27 +4,34 @@ using Azure.Storage.Queues;
 using LojaNova.Ecommerce.Api.Data;
 using LojaNova.Ecommerce.Api.Repositories;
 using LojaNova.Ecommerce.Api.Services;
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-// Configuração do DB Context
+var aiConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"];
+builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions
+{
+    ConnectionString = aiConnectionString
+});
+
+// Configuraï¿½ï¿½o do DB Context
 builder.Services.AddDbContext<LojaNovaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("LojaNovaDbConnection")));
 
-// Configuração de Repositórios
+// Configuraï¿½ï¿½o de Repositï¿½rios
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
-// Configuração de Serviços
+// Configuraï¿½ï¿½o de Serviï¿½os
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<ICatalogService, CatalogService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 
-// Configuração do Azure Storage Service
+// Configuraï¿½ï¿½o do Azure Storage Service
 builder.Services.AddScoped<IAzureStorageService, AzureStorageService>(provider =>
 {
     var connectionString = builder.Configuration.GetConnectionString("LojaNovaAzureStorage");
@@ -35,9 +42,9 @@ builder.Services.AddScoped<IAzureStorageService, AzureStorageService>(provider =
     var blobServiceClient = new BlobServiceClient(connectionString);
     var shareClient = new ShareClient(connectionString, productImagesShareName);
 
-    // Criar fila e share se não existirem (idealmente feito no provisionamento ou migração)
+    // Criar fila e share se nï¿½o existirem (idealmente feito no provisionamento ou migraï¿½ï¿½o)
     queueClient.CreateIfNotExists();
-    //shareClient.GetDirectoryClient("/").CreateIfNotExists(); // Cria o diretório raiz do share
+    //shareClient.GetDirectoryClient("/").CreateIfNotExists(); // Cria o diretï¿½rio raiz do share
 
     return new AzureStorageService(queueClient, blobServiceClient, shareClient);
 });
@@ -56,7 +63,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 
-    // Aplica migrações pendentes ao iniciar em desenvolvimento
+    // Aplica migraï¿½ï¿½es pendentes ao iniciar em desenvolvimento
     using (var scope = app.Services.CreateScope())
     {
         var dbContext = scope.ServiceProvider.GetRequiredService<LojaNovaDbContext>();
