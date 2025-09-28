@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/769e286a-2808-46c5-8779-2e938dbe6da9/resourceGroups/LojaNova/providers/Microsoft.Web/sites/lojanovaprodtsa",
+    "appService.deploySubpath": "src/LojaNova.Ecommerce.Api"
+}
